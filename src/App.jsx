@@ -22,7 +22,7 @@ function App() {
         .get(url)
         .then((response) => {
           setData(response.data);
-          console.log(response.data);
+          // console.log(response.data);
           setLoading(false);
         })
         .catch((err) => {
@@ -46,7 +46,6 @@ function App() {
     const currentTimeString = `Local time: ${formattedTime}`;
     const finalString = `${formattedDate} | ${currentTimeString}`;
 
-    console.log(finalString);
     return finalString;
   };
 
