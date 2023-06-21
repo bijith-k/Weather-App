@@ -36,7 +36,7 @@ function App() {
  
 
   const formatToLocalTime = (dt, timezone) => {
-    console.log(dt,timezone)
+    
     const currentDateTime = DateTime.fromMillis(dt * 1000).plus(
       Duration.fromObject({ seconds: timezone })
     );
@@ -52,10 +52,10 @@ function App() {
    
   return (
     <div
-      className="w-full h-screen bg-black bg-opacity-40 text-white bg-cover bg-center bg-no-repeat overflow-hidden"
+      className="w-full h-screen bg-black bg-opacity-40 text-white bg-cover bg-center bg-no-repeat overflow-hidden flex flex-col justify-center"
       style={{ backgroundImage: `url(${backgroundImage})` }}
     >
-      <div className="text-center p-4 bg-gray-400 w-3/4 md:w-3/5 mx-auto mt-8 text-black rounded-lg">
+      <div className="text-center p-4 bg-gray-400 w-3/4 md:w-3/5 mx-auto  text-black rounded-lg">
         <p className="font-extrabold text-xl">WEATHER APP</p>
         <input
           value={location}
@@ -82,7 +82,7 @@ function App() {
             <div className="font-bold text-3xl">
               {data.main ? <h1>{data.main.temp.toFixed()}°C</h1> : null}
             </div>
-            <div className="font-semibold text-3xl flex">
+            <div className="font-semibold text-3xl flex justify-center">
               {data.weather ? <h1>{data.weather[0].main}</h1> : null}
               {data.weather ? (
                 <img
