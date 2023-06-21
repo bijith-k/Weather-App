@@ -8,7 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 function App() {
   const [data, setData] = useState({});
   const [location, setLocation] = useState("");
-  // const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=${import.meta.env.VITE_WEATHER_API_KEY}`;
 
   const searchLocation = (e) => {
@@ -51,10 +51,10 @@ function App() {
 
   return (
     <div
-      className="app w-full h-screen bg-black bg-opacity-40 text-white bg-cover bg-center bg-no-repeat overflow-hidden"
+      className="w-full h-screen bg-black bg-opacity-40 text-white bg-cover bg-center bg-no-repeat overflow-hidden"
       style={{ backgroundImage: `url(${backgroundImage})` }}
     >
-      <div className="search text-center p-4 bg-gray-400 w-3/4 md:w-3/5 mx-auto mt-8 text-black rounded-lg">
+      <div className="text-center p-4 bg-gray-400 w-3/4 md:w-3/5 mx-auto mt-8 text-black rounded-lg">
         <p className="font-extrabold text-xl">WEATHER APP</p>
         <input
           value={location}
@@ -66,8 +66,8 @@ function App() {
         />
       </div>
       {data.name != undefined && (
-            <div className="container  h-4/6 w-3/4 md:w-3/5 mx-auto bg-gray-400 mt-4 mb-2 rounded-lg flex flex-col items-center justify-center">
-              <div className="time-date">
+            <div className="h-4/6 w-3/4 md:w-3/5 mx-auto bg-gray-400 mt-4 mb-5 rounded-lg flex flex-col items-center justify-center">
+              <div>
                 {data.name != undefined && (
                   <p className="text-center my-7 font-bold text-xl text-black">
                     {formatToLocalTime(data.dt, data.timezone)}
