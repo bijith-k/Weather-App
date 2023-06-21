@@ -36,6 +36,7 @@ function App() {
  
 
   const formatToLocalTime = (dt, timezone) => {
+    console.log(dt,timezone)
     const currentDateTime = DateTime.fromMillis(dt * 1000).plus(
       Duration.fromObject({ seconds: timezone })
     );
@@ -49,6 +50,7 @@ function App() {
     return finalString;
   };
 
+   
   return (
     <div
       className="w-full h-screen bg-black bg-opacity-40 text-white bg-cover bg-center bg-no-repeat overflow-hidden"
@@ -66,43 +68,49 @@ function App() {
         />
       </div>
       {data.name != undefined && (
-            <div className="h-4/6 w-3/4 md:w-3/5 mx-auto bg-gray-400 mt-4 mb-5 rounded-lg flex flex-col items-center justify-center">
-              <div>
-                {data.name != undefined && (
-                  <p className="text-center my-7 font-bold text-xl text-black">
-                    {formatToLocalTime(data.dt, data.timezone)}
-                  </p>
-                )}
-              </div>
-              <div className=" mx-auto text-center my-8 text-black">
-                <div className="font-extrabold text-3xl">
-                  <p>{data.name}</p>
-                </div>
-                <div className="font-bold text-3xl">
-                  {data.main ? <h1>{data.main.temp.toFixed()}</h1> : null}
-                </div>
-                <div className="font-semibold text-3xl">
-                  {data.weather ? <h1>{data.weather[0].main}</h1> : null}
-                </div>
-              </div>
-
-              {data.name != undefined && (
-                <div className="flex justify-evenly text-center w-3/4 p-7 rounded-md bg-black">
-                  <div className="font-semibold text-lg m-2">
-                    {data.main ? <p>{data.main.feels_like.toFixed()}</p> : null}
-                    <p>Feels like</p>
-                  </div>
-                  <div className="font-semibold text-lg m-2">
-                    {data.main ? <p>{data.main.humidity}</p> : null}
-                    <p>Humidity</p>
-                  </div>
-                  <div className="font-semibold text-lg m-2">
-                    {data.wind ? <p>{data.wind.speed.toFixed()}</p> : null}
-                    <p>Wind speed</p>
-                  </div>
-                </div>
-              )}
+        <div className="h-4/6 w-3/4 md:w-3/5 mx-auto bg-gray-400 mt-4 mb-2 rounded-lg flex flex-col items-center justify-center">
+          <div>
+            {data.name != undefined && (
+              <p className="text-center my-7 font-bold text-xl text-black">
+                {formatToLocalTime(data.dt, data.timezone)}
+              </p>
+            )}
+          </div>
+          <div className=" mx-auto text-center my-8 text-black">
+            <div className="font-extrabold text-3xl">
+              <p>{data.name}</p>
             </div>
+            <div className="font-bold text-3xl">
+              {data.main ? <h1>{data.main.temp.toFixed()}°C</h1> : null}
+            </div>
+            <div className="font-semibold text-3xl flex">
+              {data.weather ? <h1>{data.weather[0].main}</h1> : null}
+              {data.weather ? (
+                <img
+                  src={`http://openweathermap.org/img/w/${data?.weather[0]?.icon}.png`}
+                  alt="Weather Icon"
+                />
+              ) : null}
+            </div>
+          </div>
+
+          {data.name != undefined && (
+            <div className="flex justify-evenly text-center w-5/6  md:w-3/4 h-fit md:p-7  rounded-md bg-black">
+              <div className="font-semibold text-lg m-2">
+                {data.main ? <p>{data.main.feels_like.toFixed()}°C</p> : null}
+                <p>Feels like</p>
+              </div>
+              <div className="font-semibold text-lg m-2">
+                {data.main ? <p>{data.main.humidity} %</p> : null}
+                <p>Humidity</p>
+              </div>
+              <div className="font-semibold text-lg m-2">
+                {data.wind ? <p>{data.wind.speed.toFixed()} MPH</p> : null}
+                <p>Wind speed</p>
+              </div>
+            </div>
+          )}
+        </div>
       )}
       <ToastContainer />
     </div>
